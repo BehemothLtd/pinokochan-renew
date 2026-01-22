@@ -1,0 +1,22 @@
+{
+  "id": "dau-goi-tsubaki-001",
+  "name": "Dầu gội Tsubaki Premium Repair",
+  "slug": "dau-goi-shiseido",
+  "description": "Dầu gội cao cấp Tsubaki với tinh chất hoa trà Nhật Bản. Phục hồi tóc hư tổn, mềm mượt, óng ả tự nhiên. Hương thơm dịu nhẹ, không gây khô da đầu. Phù hợp tóc khô, xơ, hư tổn.",
+  "price": 250000,
+  "categoryId": "cham-soc-toc",
+  "images": [
+    "https://placehold.co/600x600/E8A0BF/ffffff?text=Tsubaki+Shampoo",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Texture"
+  ],
+  "featured": false,
+  "tags": ["Dầu gội", "Tsubaki", "Phục hồi"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Thương hiệu": "Shiseido Tsubaki",
+    "Dung tích": "490ml",
+    "Loại tóc": "Tóc khô, hư tổn",
+    "Thành phần chính": "Tinh chất hoa trà, Amino acid",
+    "Hạn sử dụng": "3 năm"
+  }
+}

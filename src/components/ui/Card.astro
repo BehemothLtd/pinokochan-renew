@@ -1,0 +1,29 @@
+---
+interface Props {
+  variant?: 'default' | 'hover';
+  padding?: 'default' | 'none';
+  class?: string;
+}
+
+const {
+  variant = 'default',
+  padding = 'default',
+  class: className = '',
+} = Astro.props;
+
+const variantClasses = {
+  default: '',
+  hover: 'hover-lift hover:japandi-shadow-lg transition-all duration-300',
+};
+
+const paddingClasses = {
+  default: 'p-6',
+  none: '',
+};
+
+const classes = `bg-white rounded-2xl japandi-shadow ${variantClasses[variant]} ${paddingClasses[padding]} ${className}`;
+---
+
+<div class={classes}>
+  <slot />
+</div>

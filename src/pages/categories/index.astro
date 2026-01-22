@@ -1,0 +1,50 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CategoryCard from '@/components/product/CategoryCard.astro';
+import Breadcrumb from '@/components/product/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const categories = await getCollection('categories');
+const sortedCategories = categories
+  .map((c) => c.data)
+  .sort((a, b) => a.order - b.order);
+
+// Count products per category
+const products = await getCollection('products');
+const categoryProductCounts = new Map<string, number>();
+for (const cat of sortedCategories) {
+  let totalCount = 0;
+  for (const child of cat.children) {
+    const count = products.filter((p) => p.data.categoryId === child.id).length;
+    categoryProductCounts.set(child.id, count);
+    totalCount += count;
+  }
+  categoryProductCounts.set(cat.id, totalCount);
+}
+---
+
+<BaseLayout
+  title="Danh mục sản phẩm"
+  description="Khám phá các danh mục hàng Nhật"
+>
+  <div class="japandi-container ma-section">
+    <Breadcrumb items={[{ label: 'Danh mục' }]} class="mb-8" />
+
+    <h1 class="text-3xl font-medium text-stone-800 mb-8 pink-underline">
+      Danh mục sản phẩm
+    </h1>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        sortedCategories.map((category) => (
+          <CategoryCard
+            name={category.name}
+            slug={`/categories/${category.slug}`}
+            image={category.image}
+            productCount={categoryProductCounts.get(category.id) || 0}
+          />
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,31 @@
+{
+  "id": "thuc-pham",
+  "name": "Thực phẩm",
+  "slug": "thuc-pham",
+  "description": "Thực phẩm và đồ ăn vặt từ Nhật Bản",
+  "image": "https://placehold.co/600x400/a8a29e/ffffff?text=Thuc+Pham",
+  "order": 3,
+  "children": [
+    {
+      "id": "banh-keo",
+      "name": "Bánh kẹo",
+      "slug": "banh-keo",
+      "description": "Bánh kẹo và đồ ăn vặt",
+      "order": 1
+    },
+    {
+      "id": "do-uong",
+      "name": "Đồ uống",
+      "slug": "do-uong",
+      "description": "Nước giải khát và đồ uống",
+      "order": 2
+    },
+    {
+      "id": "gia-vi",
+      "name": "Gia vị",
+      "slug": "gia-vi",
+      "description": "Gia vị và nước sốt",
+      "order": 3
+    }
+  ]
+}

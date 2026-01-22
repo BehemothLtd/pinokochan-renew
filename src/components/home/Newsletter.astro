@@ -1,0 +1,127 @@
+---
+/**
+ * Contact & Social Section
+ * Static contact info and social links for static site
+ */
+---
+
+<section class="ma-section bg-stone-900 relative overflow-hidden">
+  <!-- Background pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+  </div>
+
+  <!-- Decorative blobs -->
+  <div class="absolute top-0 left-1/4 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-400/10 rounded-full blur-3xl"></div>
+
+  <!-- Japanese character decoration -->
+  <div class="absolute top-1/2 left-10 -translate-y-1/2 text-[300px] leading-none text-white/[0.02] select-none pointer-events-none hidden xl:block">
+    繋
+  </div>
+
+  <div class="japandi-container relative">
+    <div class="max-w-4xl mx-auto">
+      <!-- Section header -->
+      <div class="text-center mb-12 reveal">
+        <div class="relative w-20 h-20 mx-auto mb-8">
+          <div class="absolute inset-0 bg-pink-500/20 rounded-2xl rotate-6"></div>
+          <div class="relative w-full h-full bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl flex items-center justify-center">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+            </svg>
+          </div>
+        </div>
+
+        <h2 class="text-3xl lg:text-4xl font-medium text-white mb-4">
+          Kết nối với <span class="text-pink-400">Pinokochan</span>
+        </h2>
+        <p class="text-stone-400 text-lg max-w-xl mx-auto">
+          Theo dõi chúng tôi để cập nhật sản phẩm mới và nhận tư vấn trực tiếp
+        </p>
+      </div>
+
+      <!-- Contact cards grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-reveal">
+        <!-- Zalo -->
+        <a href="https://zalo.me/pinokochan" target="_blank" rel="noopener noreferrer" class="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-pink-400/50 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/10">
+          <div class="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.04 2 11c0 2.95 1.58 5.57 4 7.18V22l3.79-2.08c.7.14 1.43.08 2.21.08 5.52 0 10-4.04 10-9s-4.48-9-10-9zm.5 12.5h-3c-.28 0-.5-.22-.5-.5v-5c0-.28.22-.5.5-.5h3c.28 0 .5.22.5.5v5c0 .28-.22.5-.5.5zm4 0h-2c-.28 0-.5-.22-.5-.5V9c0-.28.22-.5.5-.5h2c.28 0 .5.22.5.5v5c0 .28-.22.5-.5.5z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-medium text-lg mb-1">Zalo</h3>
+          <p class="text-stone-400 text-sm">Chat trực tiếp với chúng tôi</p>
+          <div class="mt-4 flex items-center text-pink-400 text-sm font-medium">
+            <span>Nhắn tin ngay</span>
+            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://facebook.com/pinokochan" target="_blank" rel="noopener noreferrer" class="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-pink-400/50 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/10">
+          <div class="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-medium text-lg mb-1">Facebook</h3>
+          <p class="text-stone-400 text-sm">Theo dõi fanpage của chúng tôi</p>
+          <div class="mt-4 flex items-center text-pink-400 text-sm font-medium">
+            <span>Theo dõi ngay</span>
+            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/pinokochan" target="_blank" rel="noopener noreferrer" class="group bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-pink-400/50 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-pink-500/10 sm:col-span-2 lg:col-span-1">
+          <div class="w-14 h-14 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <h3 class="text-white font-medium text-lg mb-1">Instagram</h3>
+          <p class="text-stone-400 text-sm">Xem hình ảnh sản phẩm mới</p>
+          <div class="mt-4 flex items-center text-pink-400 text-sm font-medium">
+            <span>Xem ngay</span>
+            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <!-- Contact info -->
+      <div class="flex flex-wrap items-center justify-center gap-6 lg:gap-10 mt-12 pt-10 border-t border-stone-800 reveal">
+        <div class="flex items-center gap-3 text-stone-400">
+          <div class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+          </div>
+          <span class="text-sm">0123 456 789</span>
+        </div>
+        <div class="flex items-center gap-3 text-stone-400">
+          <div class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <span class="text-sm">contact@pinokochan.vn</span>
+        </div>
+        <div class="flex items-center gap-3 text-stone-400">
+          <div class="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center">
+            <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <span class="text-sm">8:00 - 22:00 hàng ngày</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HeroSection from '@/components/home/HeroSection.astro';
+import FeaturedProducts from '@/components/home/FeaturedProducts.astro';
+import CategoryShowcase from '@/components/home/CategoryShowcase.astro';
+import BrandStory from '@/components/home/BrandStory.astro';
+import Testimonials from '@/components/home/Testimonials.astro';
+import Newsletter from '@/components/home/Newsletter.astro';
+import ContactCTA from '@/components/home/ContactCTA.astro';
+import Divider from '@/components/ui/Divider.astro';
+---
+
+<BaseLayout
+  title="Trang chủ"
+  description="Pinokochan - Hàng Nhật chuẩn, giá tốt. Chuyên cung cấp hàng Nhật nội địa chính hãng tại Việt Nam."
+>
+  <HeroSection />
+  <Divider variant="wave" />
+  <FeaturedProducts />
+  <CategoryShowcase />
+  <BrandStory />
+  <Testimonials />
+  <Newsletter />
+  <ContactCTA />
+</BaseLayout>

@@ -1,0 +1,100 @@
+---
+/**
+ * Footer Component
+ * Dense footer with brand info, links, social media, and copyright
+ * Vietnamese text: Pinokochan - Hàng Nhật chuẩn
+ */
+import SocialLinks from './SocialLinks.astro';
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  shop: [
+    { href: '/products', label: 'Sản phẩm' },
+    { href: '/categories', label: 'Danh mục' },
+    { href: '/about', label: 'Giới thiệu' },
+  ],
+  info: [
+    { href: '/contact', label: 'Liên hệ' },
+    { href: '/shipping', label: 'Vận chuyển' },
+    { href: '/returns', label: 'Đổi trả hàng' },
+  ],
+};
+---
+
+<footer class="bg-cream border-t border-pink-100 mt-auto">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Brand column -->
+      <div class="md:col-span-2">
+        <a href="/" class="inline-flex items-center gap-3 mb-4 group">
+          <img
+            src="/images/logo.png"
+            alt="Pinokochan"
+            class="w-10 h-10 transition-transform group-hover:scale-105"
+          />
+          <span class="text-xl font-bold text-stone-800 group-hover:text-pink-500 transition-colors">Pinokochan</span>
+        </a>
+        <p class="text-sm text-stone-600 leading-relaxed mb-4">
+          Hàng Nhật chuẩn - Mang đến những sản phẩm chất lượng từ Nhật Bản
+        </p>
+        <div>
+          <p class="text-sm text-stone-600 mb-2">Theo dõi chúng tôi:</p>
+          <SocialLinks />
+        </div>
+      </div>
+
+      <!-- Shop links -->
+      <div>
+        <h3 class="font-bold text-stone-800 mb-3">Cửa hàng</h3>
+        <ul class="space-y-2">
+          {footerLinks.shop.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-stone-600 hover:text-pink-500 transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Info links -->
+      <div>
+        <h3 class="font-bold text-stone-800 mb-3">Thông tin</h3>
+        <ul class="space-y-2">
+          {footerLinks.info.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-stone-600 hover:text-pink-500 transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-8 pt-8 border-t border-pink-200">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-stone-500">
+          &copy; {currentYear} Pinokochan. Hàng Nhật chuẩn. All rights reserved.
+        </p>
+        <div class="flex items-center gap-4 text-sm text-stone-500">
+          <a href="https://zalo.me/pinokochan" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500">
+            Zalo
+          </a>
+          <span>•</span>
+          <a href="https://facebook.com/pinokochan" target="_blank" rel="noopener noreferrer" class="hover:text-pink-500">
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

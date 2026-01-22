@@ -1,0 +1,54 @@
+---
+interface Props {
+  amount: number;
+  originalAmount?: number;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const {
+  amount,
+  originalAmount,
+  size = 'md',
+  class: className = '',
+} = Astro.props;
+
+// Format price as Vietnamese Dong (VND)
+const formatVND = (value: number): string => {
+  return (
+    new Intl.NumberFormat('vi-VN', {
+      style: 'decimal',
+    })
+      .format(value)
+      .replace(/\./g, '.') + '₫'
+  );
+};
+
+const formattedPrice = formatVND(amount);
+const formattedOriginal = originalAmount ? formatVND(originalAmount) : null;
+
+const sizes = {
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-xl',
+};
+---
+
+<div class={`inline-flex items-baseline gap-2 ${className}`}>
+  {
+    formattedOriginal && (
+      <span class="text-sm text-stone-400 line-through font-light">
+        {formattedOriginal}
+      </span>
+    )
+  }
+  <span
+    class:list={[
+      'font-medium',
+      formattedOriginal ? 'text-pink-600' : 'text-stone-700',
+      sizes[size],
+    ]}
+  >
+    {formattedPrice}
+  </span>
+</div>

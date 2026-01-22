@@ -1,0 +1,45 @@
+---
+/**
+ * Navigation Component
+ * Desktop navigation with Vietnamese labels
+ * Props:
+ * - class?: Additional CSS classes
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const navItems = [
+  { href: '/', label: 'Trang chủ' },
+  { href: '/products', label: 'Sản phẩm' },
+  { href: '/categories', label: 'Danh mục' },
+  { href: '/about', label: 'Giới thiệu' },
+  { href: '/contact', label: 'Liên hệ' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class={`hidden md:block ${className}`}>
+  <ul class="flex items-center gap-2">
+    {navItems.map((item) => {
+      const isActive = currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+      return (
+        <li>
+          <a
+            href={item.href}
+            class={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${
+              isActive
+                ? 'bg-pink-100 text-pink-700'
+                : 'text-stone-600 hover:bg-pink-50 hover:text-pink-600'
+            }`}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

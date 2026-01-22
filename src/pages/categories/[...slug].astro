@@ -1,0 +1,63 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductGrid from '@/components/product/ProductGrid.astro';
+import Breadcrumb from '@/components/product/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  const paths = [];
+
+  for (const cat of categories) {
+    for (const child of cat.data.children) {
+      paths.push({
+        params: {
+          slug: `${cat.data.slug}/${child.slug}`,
+        },
+        props: {
+          parent: cat.data,
+          child: child,
+        },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { parent, child } = Astro.props;
+
+// Get products in this child category
+const products = await getCollection('products');
+const categoryProducts = products
+  .filter((p) => p.data.categoryId === child.id)
+  .map((p) => p.data);
+---
+
+<BaseLayout
+  title={`${child.name} | ${parent.name}`}
+  description={child.description || `Khám phá ${child.name}`}
+>
+  <div class="japandi-container ma-section">
+    <Breadcrumb
+      items={[
+        { label: 'Danh mục', href: '/categories' },
+        { label: parent.name, href: `/categories/${parent.slug}` },
+        { label: child.name },
+      ]}
+      class="mb-8"
+    />
+
+    <h1 class="text-3xl font-medium text-stone-800 mb-2 pink-underline">
+      {child.name}
+    </h1>
+    {
+      child.description && (
+        <p class="text-stone-500 mb-8">{child.description}</p>
+      )
+    }
+    <p class="text-stone-400 text-sm mb-8">{categoryProducts.length} sản phẩm</p>
+
+    <ProductGrid products={categoryProducts} columns={4} />
+  </div>
+</BaseLayout>

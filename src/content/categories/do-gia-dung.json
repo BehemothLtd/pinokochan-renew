@@ -1,0 +1,31 @@
+{
+  "id": "do-gia-dung",
+  "name": "Đồ gia dụng",
+  "slug": "do-gia-dung",
+  "description": "Đồ gia dụng và vật dụng sinh hoạt từ Nhật Bản",
+  "image": "https://placehold.co/600x400/78716c/ffffff?text=Do+Gia+Dung",
+  "order": 2,
+  "children": [
+    {
+      "id": "nha-bep",
+      "name": "Nhà bếp",
+      "slug": "nha-bep",
+      "description": "Đồ dùng nhà bếp",
+      "order": 1
+    },
+    {
+      "id": "phong-tam",
+      "name": "Phòng tắm",
+      "slug": "phong-tam",
+      "description": "Đồ dùng phòng tắm",
+      "order": 2
+    },
+    {
+      "id": "don-dep",
+      "name": "Dọn dẹp",
+      "slug": "don-dep",
+      "description": "Đồ dùng dọn dẹp và vệ sinh",
+      "order": 3
+    }
+  ]
+}

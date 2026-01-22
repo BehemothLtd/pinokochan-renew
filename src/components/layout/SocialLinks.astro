@@ -1,0 +1,45 @@
+---
+/**
+ * Social Links Component
+ * Displays Zalo and Facebook icons with pink hover effect
+ * Props:
+ * - class?: Additional CSS classes
+ */
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+
+const socialLinks = [
+  {
+    name: 'Zalo',
+    href: 'https://zalo.me/pinokochan',
+    icon: `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652L4.008 24l4.583-2.522c1.098.301 2.259.466 3.409.466 6.627 0 12-4.974 12-11.11C24 4.974 18.627 0 12 0zm.028 19.2c-1.157 0-2.286-.214-3.353-.601l-.238-.086-2.477 1.361.667-3.145-.094-.248C4.985 14.696 4.2 12.989 4.2 11.111 4.2 7.297 7.687 4.2 12.028 4.2s7.828 3.097 7.828 6.911-3.487 6.089-7.828 6.089z"/>
+    </svg>`,
+  },
+  {
+    name: 'Facebook',
+    href: 'https://facebook.com/pinokochan',
+    icon: `<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </svg>`,
+  },
+];
+---
+
+<div class={`flex items-center gap-4 ${className}`}>
+  {socialLinks.map((link) => (
+    <a
+      href={link.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-stone-600 hover:text-pink-500 transition-colors"
+      aria-label={link.name}
+      title={link.name}
+    >
+      <Fragment set:html={link.icon} />
+    </a>
+  ))}
+</div>

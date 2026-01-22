@@ -1,0 +1,48 @@
+---
+import CategoryCard from '@/components/product/CategoryCard.astro';
+import { getCollection } from 'astro:content';
+
+const categories = await getCollection('categories');
+const parentCategories = categories
+  .filter((c) => !c.data.parentId)
+  .map((c) => c.data)
+  .sort((a, b) => a.order - b.order)
+  .slice(0, 6);
+---
+
+<section class="ma-section bg-gradient-to-b from-stone-50 to-white relative overflow-hidden">
+  <!-- Decorative pattern -->
+  <div class="absolute inset-0 opacity-[0.02]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8A0BF' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);"></div>
+
+  <div class="japandi-container relative">
+    <!-- Section header -->
+    <div class="text-center mb-14">
+      <span class="inline-block px-4 py-1.5 bg-stone-100 text-stone-600 text-sm font-medium tracking-wider rounded-full mb-4">
+        Khám phá
+      </span>
+      <h2 class="text-3xl lg:text-4xl font-medium text-stone-800 mb-4">
+        Danh mục <span class="gradient-text">sản phẩm</span>
+      </h2>
+      <p class="text-stone-500 max-w-lg mx-auto text-lg">
+        Khám phá theo danh mục yêu thích của bạn
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
+      {parentCategories.map((category) => (
+        <CategoryCard
+          name={category.name}
+          slug={category.slug}
+          image={category.image}
+        />
+      ))}
+    </div>
+
+    <!-- Decorative element -->
+    <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+      <div class="w-2 h-2 bg-pink-300 rounded-full"></div>
+      <div class="w-20 h-0.5 bg-gradient-to-r from-pink-200 to-stone-200"></div>
+      <div class="w-2 h-2 bg-stone-300 rounded-full"></div>
+    </div>
+  </div>
+</section>

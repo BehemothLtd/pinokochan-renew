@@ -1,0 +1,31 @@
+{
+  "id": "my-pham",
+  "name": "Mỹ phẩm",
+  "slug": "my-pham",
+  "description": "Mỹ phẩm và sản phẩm làm đẹp từ Nhật Bản",
+  "image": "https://placehold.co/600x400/E8A0BF/ffffff?text=My+Pham",
+  "order": 1,
+  "children": [
+    {
+      "id": "duong-da",
+      "name": "Dưỡng da",
+      "slug": "duong-da",
+      "description": "Sản phẩm chăm sóc và dưỡng da",
+      "order": 1
+    },
+    {
+      "id": "trang-diem",
+      "name": "Trang điểm",
+      "slug": "trang-diem",
+      "description": "Mỹ phẩm trang điểm",
+      "order": 2
+    },
+    {
+      "id": "cham-soc-toc",
+      "name": "Chăm sóc tóc",
+      "slug": "cham-soc-toc",
+      "description": "Sản phẩm chăm sóc tóc",
+      "order": 3
+    }
+  ]
+}

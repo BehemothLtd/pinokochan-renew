@@ -1,0 +1,24 @@
+{
+  "id": "thoi-trang",
+  "name": "Thời trang",
+  "slug": "thoi-trang",
+  "description": "Thời trang và phụ kiện từ Nhật Bản",
+  "image": "https://placehold.co/600x400/DB7093/ffffff?text=Thoi+Trang",
+  "order": 4,
+  "children": [
+    {
+      "id": "quan-ao",
+      "name": "Quần áo",
+      "slug": "quan-ao",
+      "description": "Quần áo thời trang",
+      "order": 1
+    },
+    {
+      "id": "phu-kien",
+      "name": "Phụ kiện",
+      "slug": "phu-kien",
+      "description": "Phụ kiện thời trang",
+      "order": 2
+    }
+  ]
+}

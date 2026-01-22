@@ -1,0 +1,58 @@
+---
+/**
+ * Header Component
+ * Sticky header with logo, navigation, and mobile menu
+ * Includes pink accent bar at top and glass effect on scroll
+ */
+import Logo from './Logo.astro';
+import Navigation from './Navigation.astro';
+import MobileMenu from './MobileMenu.astro';
+---
+
+<header
+  data-sticky-header
+  class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-pink-100/50 transition-all duration-300"
+>
+  <!-- Top pink accent bar -->
+  <div class="h-1 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-400"></div>
+
+  <div class="japandi-container">
+    <div class="flex items-center justify-between h-16 lg:h-18">
+      <!-- Logo -->
+      <Logo />
+
+      <!-- Desktop navigation -->
+      <nav class="hidden lg:flex items-center gap-1">
+        <Navigation />
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Search button (desktop) -->
+        <button
+          type="button"
+          class="hidden lg:flex items-center justify-center w-10 h-10 rounded-full text-stone-500 hover:text-pink-500 hover:bg-pink-50 transition-colors"
+          aria-label="Tìm kiếm"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+
+        <!-- CTA button (desktop) -->
+        <a
+          href="/contact"
+          class="hidden lg:inline-flex items-center gap-2 px-5 py-2.5 bg-pink-500 text-white text-sm font-medium rounded-full hover:bg-pink-600 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+        >
+          <span>Liên hệ</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+
+        <!-- Mobile menu -->
+        <MobileMenu />
+      </div>
+    </div>
+  </div>
+</header>

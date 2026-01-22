@@ -1,0 +1,21 @@
+{
+  "id": "matcha-powder-001",
+  "name": "Bột Matcha Uji Kyoto cao cấp",
+  "slug": "matcha-powder",
+  "description": "Bột matcha nghi lễ (ceremonial grade) từ vùng Uji, Kyoto nổi tiếng. Hương vị ngọt ngào tự nhiên, màu xanh tươi sáng, giàu chất chống oxi hóa. Hoàn hảo để pha trà matcha truyền thống hoặc làm bánh.",
+  "price": 850000,
+  "categoryId": "matcha",
+  "images": [
+    "https://placehold.co/600x600/78716c/ffffff?text=Matcha+Uji",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Matcha+Powder"
+  ],
+  "featured": true,
+  "tags": ["Matcha", "Kyoto", "Ceremonial Grade"],
+  "specifications": {
+    "Xuất xứ": "Uji, Kyoto, Nhật Bản",
+    "Loại": "Ceremonial Grade",
+    "Trọng lượng": "30g",
+    "Bảo quản": "Nơi khô ráo, tránh ánh sáng",
+    "Hạn sử dụng": "1 năm"
+  }
+}

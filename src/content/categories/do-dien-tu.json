@@ -1,0 +1,24 @@
+{
+  "id": "do-dien-tu",
+  "name": "Đồ điện tử",
+  "slug": "do-dien-tu",
+  "description": "Thiết bị điện tử và phụ kiện từ Nhật Bản",
+  "image": "https://placehold.co/600x400/57534e/ffffff?text=Do+Dien+Tu",
+  "order": 5,
+  "children": [
+    {
+      "id": "thiet-bi-nho",
+      "name": "Thiết bị nhỏ",
+      "slug": "thiet-bi-nho",
+      "description": "Thiết bị điện tử nhỏ gọn",
+      "order": 1
+    },
+    {
+      "id": "phu-kien-dien-tu",
+      "name": "Phụ kiện điện tử",
+      "slug": "phu-kien-dien-tu",
+      "description": "Phụ kiện thiết bị điện tử",
+      "order": 2
+    }
+  ]
+}

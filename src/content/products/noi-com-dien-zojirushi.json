@@ -1,0 +1,24 @@
+{
+  "id": "noi-com-dien-zojirushi-001",
+  "name": "Nồi cơm điện Zojirushi NP-HCC10",
+  "slug": "noi-com-dien-zojirushi",
+  "description": "Nồi cơm điện cao cấp công nghệ IH (cảm ứng từ) từ Nhật Bản. Nấu cơm ngon, dẻo, giữ ấm thông minh. Lòng nồi chống dính cao cấp, nhiều chế độ nấu (cơm trắng, gạo lứt, cháo). Dung tích 1L (5.5 cup).",
+  "price": 8500000,
+  "categoryId": "noi-chao",
+  "images": [
+    "https://placehold.co/600x600/57534e/ffffff?text=Zojirushi+IH",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Inside"
+  ],
+  "featured": true,
+  "tags": ["Nồi cơm", "Zojirushi", "IH"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Thương hiệu": "Zojirushi",
+    "Model": "NP-HCC10",
+    "Dung tích": "1L (5.5 cups)",
+    "Công nghệ": "Induction Heating (IH)",
+    "Điện áp": "100V (cần dùng biến áp)",
+    "Công suất": "1105W",
+    "Bảo hành": "12 tháng"
+  }
+}

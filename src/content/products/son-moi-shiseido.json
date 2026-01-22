@@ -1,0 +1,21 @@
+{
+  "id": "son-moi-shiseido-001",
+  "name": "Son môi Shiseido Integrate Gracy",
+  "slug": "son-moi-shiseido",
+  "description": "Son môi cao cấp Shiseido với công thức dưỡng ẩm sâu, màu sắc tự nhiên, lên màu chuẩn. Kết cấu mềm mịn, lướt nhẹ trên môi, giữ màu bền lâu. An toàn cho môi nhạy cảm.",
+  "price": 280000,
+  "categoryId": "trang-diem",
+  "images": [
+    "https://placehold.co/600x600/DB7093/ffffff?text=Shiseido+Lipstick",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Swatch"
+  ],
+  "featured": false,
+  "tags": ["Son môi", "Shiseido", "Trang điểm"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Thương hiệu": "Shiseido Integrate",
+    "Màu sắc": "PK312 - Hồng cam tự nhiên",
+    "Trọng lượng": "4g",
+    "Hạn sử dụng": "3 năm"
+  }
+}

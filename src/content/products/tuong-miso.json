@@ -1,0 +1,22 @@
+{
+  "id": "tuong-miso-hikari-001",
+  "name": "Tương Miso Hikari truyền thống",
+  "slug": "tuong-miso",
+  "description": "Tương miso ủ tự nhiên 12 tháng, hương vị đậm đà, thơm ngon. Nguyên liệu hữu cơ từ đậu nành Nhật Bản. Dùng nấu súp miso, ướp thịt, hoặc làm gia vị cho nhiều món ăn.",
+  "price": 180000,
+  "categoryId": "gia-vi",
+  "images": [
+    "https://placehold.co/600x600/a8a29e/ffffff?text=Miso+Hikari",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Texture"
+  ],
+  "featured": false,
+  "tags": ["Miso", "Gia vị", "Hữu cơ"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Thương hiệu": "Hikari Miso",
+    "Loại": "Red Miso (Aka Miso)",
+    "Trọng lượng": "500g",
+    "Thành phần": "Đậu nành hữu cơ, gạo, muối biển",
+    "Bảo quản": "Nơi khô ráo, tủ lạnh sau khi mở"
+  }
+}

@@ -1,0 +1,66 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  image?: string;
+  productCount?: number;
+  class?: string;
+}
+
+const { name, slug, image, productCount, class: className = '' } = Astro.props;
+---
+
+<article class={`group relative overflow-hidden rounded-2xl hover-lift ${className}`}>
+  <a href={`/categories/${slug}`} class="block">
+    <!-- Image -->
+    <div class="relative aspect-[3/2] overflow-hidden">
+      {
+        image ? (
+          <img
+            src={image}
+            alt={name}
+            loading="lazy"
+            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+          />
+        ) : (
+          <div class="w-full h-full bg-gradient-to-br from-pink-100 via-stone-50 to-pink-50 flex items-center justify-center">
+            <span class="text-5xl opacity-50" style="animation: float 4s ease-in-out infinite;">✿</span>
+          </div>
+        )
+      }
+
+      <!-- Overlay gradient -->
+      <div class="absolute inset-0 bg-gradient-to-t from-stone-900/80 via-stone-900/30 to-transparent"></div>
+
+      <!-- Decorative elements -->
+      <div class="absolute top-4 right-4 w-12 h-12 border-2 border-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="absolute top-6 right-6 w-6 h-6 border border-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100"></div>
+
+      <!-- Content -->
+      <div class="absolute bottom-0 left-0 right-0 p-5">
+        <div class="flex items-end justify-between">
+          <div class="space-y-1">
+            <h3 class="font-medium text-white text-xl tracking-wide group-hover:text-pink-200 transition-colors duration-300">
+              {name}
+            </h3>
+            {
+              productCount !== undefined && (
+                <p class="text-white/70 text-sm">{productCount} sản phẩm</p>
+              )
+            }
+          </div>
+
+          <!-- Arrow button -->
+          <div class="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white group-hover:bg-pink-500 group-hover:text-white transition-all duration-300 translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pink accent line -->
+      <div class="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-pink-400 to-pink-600 group-hover:w-full transition-all duration-500"></div>
+    </div>
+  </a>
+</article>

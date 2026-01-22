@@ -1,0 +1,21 @@
+{
+  "id": "serum-vitamin-c-001",
+  "name": "Serum Vitamin C Melano CC Rohto",
+  "slug": "serum-vitamin-c",
+  "description": "Serum dưỡng trắng, mờ thâm nám từ Nhật Bản với vitamin C tinh khiết. Giúp làm mờ vết thâm mụn, đốm nâu và cải thiện sắc tố da. Kết cấu nhẹ, thấm nhanh, phù hợp mọi loại da.",
+  "price": 320000,
+  "categoryId": "duong-da",
+  "images": [
+    "https://placehold.co/600x600/E8A0BF/ffffff?text=Serum+Vitamin+C",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Texture"
+  ],
+  "featured": true,
+  "tags": ["Vitamin C", "Làm sáng da", "Mờ thâm"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Thương hiệu": "Rohto Melano CC",
+    "Dung tích": "20ml",
+    "Thành phần chính": "Vitamin C, Vitamin E",
+    "Hạn sử dụng": "3 năm"
+  }
+}

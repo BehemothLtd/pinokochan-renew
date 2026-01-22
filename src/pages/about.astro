@@ -1,0 +1,108 @@
+---
+/**
+ * About Page
+ * Brand story and company information for Pinokochan
+ */
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Divider from '@/components/ui/Divider.astro';
+---
+
+<BaseLayout
+  title="Về Pinokochan"
+  description="Pinokochan - Chuyên hàng Nhật nội địa chính hãng, giá tốt"
+>
+  <div class="japandi-container ma-section">
+    <div class="max-w-3xl mx-auto">
+      <!-- Hero -->
+      <div class="text-center mb-12">
+        <h1 class="text-3xl lg:text-4xl font-medium text-stone-800 mb-4">
+          Về <span class="text-[#E8A0BF]">Pinokochan</span>
+        </h1>
+        <p class="text-lg text-stone-500">
+          Hàng Nhật chuẩn, giá tốt
+        </p>
+      </div>
+
+      <Divider variant="dots" />
+
+      <!-- Story -->
+      <div class="prose prose-stone max-w-none space-y-8">
+        <section>
+          <h2 class="text-xl font-medium text-stone-700 pink-underline">
+            Câu chuyện của chúng tôi
+          </h2>
+          <p class="text-stone-600 leading-relaxed mt-4">
+            Pinokochan được thành lập với tình yêu dành cho văn hóa và sản phẩm Nhật Bản.
+            Chúng tôi mang đến những sản phẩm Nhật nội địa chính hãng với chất lượng cao nhất,
+            từ đồ gia dụng, mỹ phẩm đến thực phẩm và đồ uống.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-medium text-stone-700 pink-underline">
+            Sứ mệnh
+          </h2>
+          <p class="text-stone-600 leading-relaxed mt-4">
+            Chúng tôi cam kết mang đến cho khách hàng Việt Nam những trải nghiệm
+            mua sắm hàng Nhật tốt nhất - từ chất lượng sản phẩm, giá cả hợp lý
+            đến dịch vụ chăm sóc khách hàng tận tâm.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-medium text-stone-700 pink-underline">
+            Cam kết chất lượng
+          </h2>
+          <ul class="text-stone-600 space-y-3 mt-4">
+            <li class="flex items-start gap-3">
+              <span class="text-[#E8A0BF]">✓</span>
+              <span>100% hàng Nhật nội địa chính hãng</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#E8A0BF]">✓</span>
+              <span>Nguồn gốc xuất xứ rõ ràng</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#E8A0BF]">✓</span>
+              <span>Đóng gói cẩn thận, an toàn</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-[#E8A0BF]">✓</span>
+              <span>Hỗ trợ tư vấn nhiệt tình</span>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-medium text-stone-700 pink-underline">
+            Liên hệ
+          </h2>
+          <p class="text-stone-600 leading-relaxed mt-4">
+            Nếu bạn có bất kỳ câu hỏi nào về sản phẩm hoặc dịch vụ của chúng tôi,
+            đừng ngần ngại liên hệ qua:
+          </p>
+          <ul class="text-stone-600 space-y-2 mt-4">
+            <li>
+              <strong>Email:</strong>{' '}
+              <a href="mailto:contact@pinokochan.vn" class="text-[#E8A0BF] hover:underline">
+                contact@pinokochan.vn
+              </a>
+            </li>
+            <li>
+              <strong>Hotline:</strong>{' '}
+              <a href="tel:+84xxxxxxxxx" class="text-[#E8A0BF] hover:underline">
+                +84 xxx xxx xxx
+              </a>
+            </li>
+            <li>
+              <strong>Zalo:</strong>{' '}
+              <a href="https://zalo.me/pinokochan" class="text-[#E8A0BF] hover:underline">
+                Pinokochan
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

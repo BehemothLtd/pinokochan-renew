@@ -1,0 +1,70 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductDetail from '@/components/product/ProductDetail.astro';
+import ProductGrid from '@/components/product/ProductGrid.astro';
+import Breadcrumb from '@/components/product/Breadcrumb.astro';
+import Divider from '@/components/ui/Divider.astro';
+import { getCollection } from 'astro:content';
+import { getChildCategoryById } from '@/lib/categories';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.data.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const category = await getChildCategoryById(product.data.categoryId);
+
+// Related products (same category)
+const allProducts = await getCollection('products');
+const relatedProducts = allProducts
+  .filter(
+    (p) =>
+      p.data.categoryId === product.data.categoryId &&
+      p.data.id !== product.data.id
+  )
+  .slice(0, 4)
+  .map((p) => p.data);
+
+const breadcrumbs = [{ label: 'Sản phẩm', href: '/products' }];
+if (category) {
+  breadcrumbs.push({
+    label: category.parent.name,
+    href: `/categories/${category.parent.slug}`,
+  });
+  breadcrumbs.push({
+    label: category.name,
+    href: `/categories/${category.parent.slug}/${category.slug}`,
+  });
+}
+breadcrumbs.push({ label: product.data.name });
+---
+
+<BaseLayout
+  title={product.data.name}
+  description={product.data.description.slice(0, 160)}
+  image={product.data.images[0]}
+>
+  <div class="japandi-container ma-section">
+    <Breadcrumb items={breadcrumbs} class="mb-8" />
+
+    <ProductDetail product={product.data} categoryName={category?.name} />
+
+    {
+      relatedProducts.length > 0 && (
+        <>
+          <Divider variant="dots" class="my-16" />
+          <section>
+            <h2 class="text-2xl font-medium text-stone-800 mb-8 pink-underline">
+              Sản phẩm liên quan
+            </h2>
+            <ProductGrid products={relatedProducts} columns={4} />
+          </section>
+        </>
+      )
+    }
+  </div>
+</BaseLayout>

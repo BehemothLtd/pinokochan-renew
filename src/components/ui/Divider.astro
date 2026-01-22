@@ -1,0 +1,44 @@
+---
+interface Props {
+  variant?: 'line' | 'wave' | 'dots';
+  class?: string;
+}
+
+const { variant = 'line', class: className = '' } = Astro.props;
+---
+
+{
+  variant === 'line' && (
+    <hr
+      class={`border-0 h-px bg-gradient-to-r from-transparent via-stone-200 to-transparent my-8 ${className}`}
+    />
+  )
+}
+
+{
+  variant === 'dots' && (
+    <div class={`flex justify-center items-center gap-2 my-8 ${className}`}>
+      <span class="w-1.5 h-1.5 rounded-full bg-stone-300" />
+      <span class="w-1.5 h-1.5 rounded-full bg-pink-500" />
+      <span class="w-1.5 h-1.5 rounded-full bg-stone-300" />
+    </div>
+  )
+}
+
+{
+  variant === 'wave' && (
+    <svg
+      class={`w-full h-4 text-stone-200 my-8 ${className}`}
+      viewBox="0 0 100 10"
+      preserveAspectRatio="none"
+      fill="none"
+    >
+      <path
+        d="M0 5 Q 25 0, 50 5 T 100 5"
+        stroke="currentColor"
+        stroke-width="0.5"
+        fill="none"
+      />
+    </svg>
+  )
+}

@@ -1,0 +1,84 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CategoryCard from '@/components/product/CategoryCard.astro';
+import ProductGrid from '@/components/product/ProductGrid.astro';
+import Breadcrumb from '@/components/product/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const categories = await getCollection('categories');
+  return categories.map((category) => ({
+    params: { parent: category.data.slug },
+    props: { category: category.data },
+  }));
+}
+
+const { category } = Astro.props;
+
+// Get products in this parent category (all children)
+const products = await getCollection('products');
+const childIds = category.children.map((c) => c.id);
+const categoryProducts = products
+  .filter((p) => childIds.includes(p.data.categoryId))
+  .map((p) => p.data);
+
+// Count products per child category
+const childProductCounts = new Map<string, number>();
+for (const child of category.children) {
+  const count = products.filter((p) => p.data.categoryId === child.id).length;
+  childProductCounts.set(child.id, count);
+}
+---
+
+<BaseLayout
+  title={category.name}
+  description={category.description || `Khám phá ${category.name}`}
+>
+  <div class="japandi-container ma-section">
+    <Breadcrumb
+      items={[
+        { label: 'Danh mục', href: '/categories' },
+        { label: category.name },
+      ]}
+      class="mb-8"
+    />
+
+    <h1 class="text-3xl font-medium text-stone-800 mb-2 pink-underline">
+      {category.name}
+    </h1>
+    {
+      category.description && (
+        <p class="text-stone-500 mb-8 max-w-2xl">{category.description}</p>
+      )
+    }
+
+    {/* Child Categories */}
+    {
+      category.children.length > 0 && (
+        <div class="mb-12">
+          <h2 class="text-xl font-medium text-stone-700 mb-6">
+            Danh mục con
+          </h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {category.children.map((child) => (
+              <CategoryCard
+                name={child.name}
+                slug={`/categories/${category.slug}/${child.slug}`}
+                image={child.image}
+                productCount={childProductCounts.get(child.id) || 0}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    {/* All Products in Category */}
+    <div>
+      <h2 class="text-xl font-medium text-stone-700 mb-6">
+        Tất cả sản phẩm ({categoryProducts.length})
+      </h2>
+      <ProductGrid products={categoryProducts} columns={4} />
+    </div>
+  </div>
+</BaseLayout>

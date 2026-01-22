@@ -1,0 +1,482 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductCard from '@/components/product/ProductCard.astro';
+import Breadcrumb from '@/components/product/Breadcrumb.astro';
+import { getCollection } from 'astro:content';
+
+const products = await getCollection('products');
+const categories = await getCollection('categories');
+
+const sortedProducts = products
+  .map((p) => p.data)
+  .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+
+const categoryList = categories.map((c) => ({
+  slug: c.id,
+  name: c.data.name,
+}));
+
+// Get unique price ranges
+const priceRanges = [
+  { label: 'Dưới 200K', min: 0, max: 200000 },
+  { label: '200K - 500K', min: 200000, max: 500000 },
+  { label: '500K - 1 triệu', min: 500000, max: 1000000 },
+  { label: 'Trên 1 triệu', min: 1000000, max: Infinity },
+];
+
+const PRODUCTS_PER_PAGE = 12;
+---
+
+<BaseLayout
+  title="Tất cả sản phẩm"
+  description="Khám phá bộ sưu tập hàng Nhật chính hãng"
+>
+  <div class="japandi-container ma-section">
+    <Breadcrumb items={[{ label: 'Sản phẩm' }]} class="mb-8" />
+
+    <!-- Header with filters toggle -->
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-8">
+      <div>
+        <h1 class="text-3xl font-medium text-stone-800 mb-2 pink-underline">
+          Tất cả sản phẩm
+        </h1>
+        <p class="text-stone-500" id="products-count">{sortedProducts.length} sản phẩm</p>
+      </div>
+
+      <!-- Mobile filter toggle -->
+      <button
+        id="filter-toggle"
+        class="lg:hidden flex items-center gap-2 px-4 py-2 bg-pink-50 text-pink-600 rounded-lg font-medium hover:bg-pink-100 transition-colors"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+        </svg>
+        <span>Bộ lọc</span>
+      </button>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sidebar Filters -->
+      <aside id="filters-sidebar" class="lg:w-64 shrink-0 hidden lg:block">
+        <div class="bg-white rounded-2xl p-6 japandi-shadow sticky top-24 space-y-6">
+          <!-- Category filter -->
+          <div>
+            <h3 class="font-medium text-stone-800 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
+              Danh mục
+            </h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="category"
+                  value=""
+                  checked
+                  class="w-4 h-4 text-pink-500 border-stone-300 focus:ring-pink-500"
+                />
+                <span class="text-stone-600 group-hover:text-pink-600 transition-colors">Tất cả</span>
+              </label>
+              {categoryList.map((cat) => (
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="category"
+                    value={cat.slug}
+                    class="w-4 h-4 text-pink-500 border-stone-300 focus:ring-pink-500"
+                  />
+                  <span class="text-stone-600 group-hover:text-pink-600 transition-colors">{cat.name}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Price filter -->
+          <div class="pt-6 border-t border-stone-100">
+            <h3 class="font-medium text-stone-800 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Mức giá
+            </h3>
+            <div class="space-y-2">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  type="radio"
+                  name="price"
+                  value=""
+                  checked
+                  class="w-4 h-4 text-pink-500 border-stone-300 focus:ring-pink-500"
+                />
+                <span class="text-stone-600 group-hover:text-pink-600 transition-colors">Tất cả giá</span>
+              </label>
+              {priceRanges.map((range, index) => (
+                <label class="flex items-center gap-3 cursor-pointer group">
+                  <input
+                    type="radio"
+                    name="price"
+                    value={index.toString()}
+                    class="w-4 h-4 text-pink-500 border-stone-300 focus:ring-pink-500"
+                  />
+                  <span class="text-stone-600 group-hover:text-pink-600 transition-colors">{range.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <!-- Sort -->
+          <div class="pt-6 border-t border-stone-100">
+            <h3 class="font-medium text-stone-800 mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12" />
+              </svg>
+              Sắp xếp
+            </h3>
+            <select
+              id="sort-select"
+              class="w-full px-4 py-2.5 bg-stone-50 border border-stone-200 rounded-lg text-stone-600 focus:border-pink-400 focus:ring-2 focus:ring-pink-100 outline-none transition-all"
+            >
+              <option value="featured">Nổi bật</option>
+              <option value="price-asc">Giá thấp → cao</option>
+              <option value="price-desc">Giá cao → thấp</option>
+              <option value="name">Tên A → Z</option>
+            </select>
+          </div>
+
+          <!-- Clear filters -->
+          <button
+            id="clear-filters"
+            class="w-full px-4 py-2.5 text-pink-600 hover:bg-pink-50 rounded-lg font-medium transition-colors flex items-center justify-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            Xóa bộ lọc
+          </button>
+        </div>
+      </aside>
+
+      <!-- Products Grid -->
+      <main class="flex-1">
+        <!-- Active filters display -->
+        <div id="active-filters" class="hidden flex-wrap gap-2 mb-6"></div>
+
+        <!-- Products container -->
+        <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+          {sortedProducts.map((product) => (
+            <div class="product-item" data-category={product.category} data-price={product.price} data-name={product.name} data-featured={product.featured ? '1' : '0'}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+
+        <!-- Empty state -->
+        <div id="empty-state" class="hidden text-center py-16">
+          <div class="w-20 h-20 mx-auto mb-6 bg-stone-100 rounded-full flex items-center justify-center">
+            <svg class="w-10 h-10 text-stone-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <p class="text-stone-500 text-lg mb-2">Không tìm thấy sản phẩm</p>
+          <p class="text-stone-400 text-sm">Hãy thử thay đổi bộ lọc</p>
+        </div>
+
+        <!-- Pagination -->
+        <div id="pagination" class="flex items-center justify-center gap-2 mt-12">
+          <!-- Populated by JS -->
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mobile filter modal -->
+  <div id="filter-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50" id="filter-modal-overlay"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-80 max-w-full bg-white p-6 overflow-y-auto">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-lg font-medium text-stone-800">Bộ lọc</h3>
+        <button id="close-filter-modal" class="p-2 hover:bg-stone-100 rounded-lg transition-colors">
+          <svg class="w-5 h-5 text-stone-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <!-- Mobile filter content will be cloned from sidebar -->
+      <div id="mobile-filter-content"></div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script define:vars={{ priceRanges, PRODUCTS_PER_PAGE }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const productsGrid = document.getElementById('products-grid');
+    const productsCount = document.getElementById('products-count');
+    const emptyState = document.getElementById('empty-state');
+    const pagination = document.getElementById('pagination');
+    const activeFiltersContainer = document.getElementById('active-filters');
+    const filtersSidebar = document.getElementById('filters-sidebar');
+    const filterModal = document.getElementById('filter-modal');
+    const filterToggle = document.getElementById('filter-toggle');
+    const filterModalOverlay = document.getElementById('filter-modal-overlay');
+    const closeFilterModal = document.getElementById('close-filter-modal');
+    const mobileFilterContent = document.getElementById('mobile-filter-content');
+    const clearFiltersBtn = document.getElementById('clear-filters');
+    const sortSelect = document.getElementById('sort-select');
+
+    const allProducts = Array.from(document.querySelectorAll('.product-item'));
+    let currentPage = 1;
+    let filteredProducts = [...allProducts];
+
+    // Clone filters to mobile modal
+    if (filtersSidebar && mobileFilterContent) {
+      const filterContent = filtersSidebar.querySelector('.space-y-6');
+      if (filterContent) {
+        mobileFilterContent.innerHTML = filterContent.innerHTML;
+      }
+    }
+
+    // Mobile filter modal toggle
+    filterToggle?.addEventListener('click', () => {
+      filterModal?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+
+    const closeModal = () => {
+      filterModal?.classList.add('hidden');
+      document.body.style.overflow = '';
+    };
+
+    filterModalOverlay?.addEventListener('click', closeModal);
+    closeFilterModal?.addEventListener('click', closeModal);
+
+    // Filter and pagination logic
+    function getSelectedCategory() {
+      const checked = document.querySelector('input[name="category"]:checked');
+      return checked ? checked.value : '';
+    }
+
+    function getSelectedPrice() {
+      const checked = document.querySelector('input[name="price"]:checked');
+      return checked ? checked.value : '';
+    }
+
+    function getSortValue() {
+      return sortSelect?.value || 'featured';
+    }
+
+    function filterProducts() {
+      const category = getSelectedCategory();
+      const priceIndex = getSelectedPrice();
+      const sort = getSortValue();
+
+      filteredProducts = allProducts.filter((product) => {
+        // Category filter
+        if (category && product.dataset.category !== category) {
+          return false;
+        }
+
+        // Price filter
+        if (priceIndex !== '') {
+          const price = parseInt(product.dataset.price);
+          const range = priceRanges[parseInt(priceIndex)];
+          if (price < range.min || price >= range.max) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+
+      // Sort products
+      filteredProducts.sort((a, b) => {
+        switch (sort) {
+          case 'price-asc':
+            return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+          case 'price-desc':
+            return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+          case 'name':
+            return a.dataset.name.localeCompare(b.dataset.name, 'vi');
+          case 'featured':
+          default:
+            return parseInt(b.dataset.featured) - parseInt(a.dataset.featured);
+        }
+      });
+
+      currentPage = 1;
+      updateDisplay();
+      updateActiveFilters(category, priceIndex);
+    }
+
+    function updateDisplay() {
+      const totalProducts = filteredProducts.length;
+      const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+      const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+      const end = start + PRODUCTS_PER_PAGE;
+
+      // Hide all products
+      allProducts.forEach((p) => (p.style.display = 'none'));
+
+      // Show filtered products for current page
+      filteredProducts.slice(start, end).forEach((p) => (p.style.display = 'block'));
+
+      // Update count
+      if (productsCount) {
+        productsCount.textContent = `${totalProducts} sản phẩm`;
+      }
+
+      // Toggle empty state
+      if (totalProducts === 0) {
+        emptyState?.classList.remove('hidden');
+        productsGrid?.classList.add('hidden');
+        pagination?.classList.add('hidden');
+      } else {
+        emptyState?.classList.add('hidden');
+        productsGrid?.classList.remove('hidden');
+        pagination?.classList.remove('hidden');
+      }
+
+      // Update pagination
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      if (!pagination || totalPages <= 1) {
+        pagination.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+
+      // Previous button
+      html += `<button class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>`;
+
+      // Page numbers
+      const maxVisible = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+      if (endPage - startPage + 1 < maxVisible) {
+        startPage = Math.max(1, endPage - maxVisible + 1);
+      }
+
+      if (startPage > 1) {
+        html += `<button class="pagination-btn" data-page="1">1</button>`;
+        if (startPage > 2) {
+          html += `<span class="px-2 text-stone-400">...</span>`;
+        }
+      }
+
+      for (let i = startPage; i <= endPage; i++) {
+        html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+      }
+
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          html += `<span class="px-2 text-stone-400">...</span>`;
+        }
+        html += `<button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>`;
+      }
+
+      // Next button
+      html += `<button class="pagination-btn ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>`;
+
+      pagination.innerHTML = html;
+
+      // Add event listeners to pagination buttons
+      pagination.querySelectorAll('.pagination-btn:not(.disabled)').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          currentPage = parseInt(btn.dataset.page);
+          updateDisplay();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function updateActiveFilters(category, priceIndex) {
+      if (!activeFiltersContainer) return;
+
+      const filters = [];
+
+      if (category) {
+        const categoryLabel = document.querySelector(`input[name="category"][value="${category}"]`)?.parentElement?.querySelector('span')?.textContent;
+        if (categoryLabel) {
+          filters.push({ type: 'category', label: categoryLabel, value: category });
+        }
+      }
+
+      if (priceIndex !== '') {
+        filters.push({ type: 'price', label: priceRanges[parseInt(priceIndex)].label, value: priceIndex });
+      }
+
+      if (filters.length > 0) {
+        activeFiltersContainer.classList.remove('hidden');
+        activeFiltersContainer.classList.add('flex');
+        activeFiltersContainer.innerHTML = filters.map((f) => `
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-pink-50 text-pink-600 text-sm rounded-full">
+            ${f.label}
+            <button class="filter-remove hover:text-pink-800" data-type="${f.type}">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </span>
+        `).join('');
+
+        // Add remove listeners
+        activeFiltersContainer.querySelectorAll('.filter-remove').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const type = btn.dataset.type;
+            if (type === 'category') {
+              document.querySelector('input[name="category"][value=""]')?.click();
+            } else if (type === 'price') {
+              document.querySelector('input[name="price"][value=""]')?.click();
+            }
+          });
+        });
+      } else {
+        activeFiltersContainer.classList.add('hidden');
+        activeFiltersContainer.classList.remove('flex');
+      }
+    }
+
+    // Event listeners for filters
+    document.querySelectorAll('input[name="category"], input[name="price"]').forEach((input) => {
+      input.addEventListener('change', filterProducts);
+    });
+
+    sortSelect?.addEventListener('change', filterProducts);
+
+    clearFiltersBtn?.addEventListener('click', () => {
+      document.querySelector('input[name="category"][value=""]')?.click();
+      document.querySelector('input[name="price"][value=""]')?.click();
+      if (sortSelect) sortSelect.value = 'featured';
+      filterProducts();
+    });
+
+    // Initial display
+    filterProducts();
+  });
+</script>
+
+<style>
+  .pagination-btn {
+    @apply w-10 h-10 flex items-center justify-center rounded-lg text-stone-600 hover:bg-pink-50 hover:text-pink-600 transition-colors;
+  }
+
+  .pagination-btn.active {
+    @apply bg-pink-500 text-white hover:bg-pink-600;
+  }
+
+  .pagination-btn.disabled {
+    @apply opacity-40 cursor-not-allowed hover:bg-transparent hover:text-stone-600;
+  }
+</style>

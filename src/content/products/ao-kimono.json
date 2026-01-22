@@ -1,0 +1,22 @@
+{
+  "id": "ao-kimono-yukata-001",
+  "name": "Áo Yukata hoa Sakura truyền thống",
+  "slug": "ao-kimono",
+  "description": "Áo yukata (kimono mùa hè) họa tiết hoa anh đào tinh tế, chất liệu cotton mát mẻ. Thiết kế truyền thống Nhật Bản, kèm theo đai obi. Phù hợp cho lễ hội mùa hè, chụp ảnh hoặc làm quà tặng.",
+  "price": 1250000,
+  "originalPrice": 1500000,
+  "categoryId": "kimono",
+  "images": [
+    "https://placehold.co/600x600/E8A0BF/ffffff?text=Yukata+Sakura",
+    "https://placehold.co/600x600/d6d3d1/44403c?text=Detail"
+  ],
+  "featured": false,
+  "tags": ["Yukata", "Kimono", "Sakura"],
+  "specifications": {
+    "Xuất xứ": "Nhật Bản",
+    "Chất liệu": "Cotton 100%",
+    "Size": "Free size (155-170cm)",
+    "Bao gồm": "Áo yukata, đai obi",
+    "Giặt": "Giặt tay, không ngâm lâu"
+  }
+}
