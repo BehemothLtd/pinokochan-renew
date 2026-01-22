@@ -16,12 +16,23 @@ const categoryList = categories.map((c) => ({
   name: c.data.name,
 }));
 
-// Get unique price ranges
+// Build subcategory -> parent category mapping for filtering
+const subcategoryToParent: Record<string, string> = {};
+categories.forEach((cat) => {
+  // Map parent category to itself
+  subcategoryToParent[cat.id] = cat.id;
+  // Map each child to the parent
+  cat.data.children?.forEach((child) => {
+    subcategoryToParent[child.id] = cat.id;
+  });
+});
+
+// Get unique price ranges (use large number instead of Infinity for JSON serialization)
 const priceRanges = [
   { label: 'Dưới 200K', min: 0, max: 200000 },
   { label: '200K - 500K', min: 200000, max: 500000 },
   { label: '500K - 1 triệu', min: 500000, max: 1000000 },
-  { label: 'Trên 1 triệu', min: 1000000, max: Infinity },
+  { label: 'Trên 1 triệu', min: 1000000, max: 999999999 },
 ];
 
 const PRODUCTS_PER_PAGE = 12;
@@ -165,7 +176,7 @@ const PRODUCTS_PER_PAGE = 12;
         <!-- Products container -->
         <div id="products-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
           {sortedProducts.map((product) => (
-            <div class="product-item" data-category={product.category} data-price={product.price} data-name={product.name} data-featured={product.featured ? '1' : '0'}>
+            <div class="product-item" data-category={subcategoryToParent[product.categoryId] || product.categoryId} data-price={product.price} data-name={product.name} data-featured={product.featured ? '1' : '0'}>
               <ProductCard product={product} />
             </div>
           ))}

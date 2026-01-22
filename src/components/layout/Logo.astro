@@ -12,16 +12,10 @@ interface Props {
 const { class: className = '' } = Astro.props;
 ---
 
-<a href="/" class={`inline-flex items-center gap-2 group ${className}`}>
-  <!-- Brand logo image -->
+<a href="/" class={`inline-block group ${className}`}>
   <img
     src="/images/logo.png"
     alt="Pinokochan"
-    class="w-10 h-10 transition-transform group-hover:scale-105"
+    class="h-10 w-auto transition-transform group-hover:scale-105"
   />
-
-  <!-- Brand name -->
-  <span class="text-xl font-bold text-gray-800 group-hover:text-pink-500 transition-colors">
-    Pinokochan
-  </span>
 </a>
